@@ -1,0 +1,25 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    #csrf_protection: true
+    #http_method_override: true
+
+    # Enables session support. Note that the session will ONLY be started if you read or write from it.
+    # Remove or comment this section to explicitly disable session support.
+    session:
+        handler_id: null
+        cookie_secure: auto
+        cookie_samesite: lax
+
+#    error_controller: AdnanMula\Cards\Infrastructure\Security\ErrorHandler
+
+    #esi: true
+    #fragments: true
+    php_errors:
+        log: true
+
+    http_client:
+      scoped_clients:
+        dok.client:
+          base_uri: 'https://decksofkeyforge.com'
+          headers:
+            Api-Key: '%env(DOK_API_TOKEN)%'

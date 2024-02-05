@@ -1,0 +1,121 @@
+{% extends "Ygo/base.html.twig" %}
+
+{% block title %}{{ 'menu.settings'|trans }}{% endblock %}
+
+{% block body %}
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({
+                'container': 'body',
+                'placement': 'top'
+            })
+        })
+    </script>
+
+    <div class="divider py-1"></div>
+
+    <div class="row">
+        <div class="col-1 col-sm-4 col-lg-3"></div>
+        <div class="col-12 col-sm-12 col-lg-6">
+
+            {% if error %}
+                <div class="divider py-1"></div>
+                <div class="alert alert-danger" role="alert">{{ error }}</div>
+            {% endif %}
+
+            {% if friends|filter(friend => friend.is_request == true)|length > 0 %}
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="row">
+                    <h3>{{ 'menu.friend_requests'|trans }}</h3>
+                </div>
+
+                {% if requestsReceived|length > 0 %}
+                <div class="row mt-3">
+                    <h5>{{ 'menu.received'|trans }}</h5>
+                </div>
+                <ul class="list-group mt-1">
+                    {% for friend in requestsReceived %}
+                        <li class="list-group-item">
+{#                            <a class="align-middle" href="{{ path('keyforge_user_detail', {'userId': friend.friend_id}) }}">{{ friend.sender_name }}</a>#}
+                            <button data-toggle="tooltip" title="{{ 'menu.add'|trans }}" type="button" class="btn btn-outline-dark acceptFriend" data-friend="{{ friend.id }}" style="float: right;"><i class="bi bi-plus" style="pointer-events: none;"></i></button>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                {% if requestsSent|length > 0 %}
+                <div class="row mt-3">
+                    <h5>{{ 'menu.sent'|trans }}</h5>
+                </div>
+
+                <ul class="list-group mt-1">
+                    {% for friend in requestsSent %}
+                        <li class="list-group-item">
+{#                            <a href="{{ path('keyforge_user_detail', {'userId': friend.friend_id}) }}">{{ friend.receiver_name }}</a>#}
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            {% if requestsAccepted|length > 0 %}
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="row">
+                    <h3>{{ 'menu.friends'|trans }}</h3>
+                </div>
+
+                <ul class="list-group mt-1">
+                    {% for friend in requestsAccepted %}
+                        <li class="list-group-item">
+{#                            <a class="align-middle" href="{{ path('keyforge_user_detail', {'userId': friend.friend_id}) }}">{{ friend.receiver_name }}</a>#}
+                            <button data-toggle="tooltip" title="{{ 'menu.remove'|trans }}" type="button" class="btn btn-outline-danger removeFriend" data-friend="{{ friend.friend_id }}" style="float: right;"><i class="bi bi-trash" style="pointer-events: none;"></i></button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <div class="shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="row">
+                    <h3>{{ 'menu.add_friends'|trans }}</h3>
+                </div>
+
+                <form action="{{ path('user_friends') }}" method="post">
+                    <input type="text" name="friendName" class="form-control" placeholder="{{ 'menu.friend_name'|trans }}">
+                    <button type="submit" class="btn btn-block btn-dark mt-2" style="width: 100%">{{ 'menu.add'|trans }}</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(".acceptFriend").click(function(event) {
+            $.ajax({
+                type: 'PATCH',
+                url: '{{ path('user_friends') }}',
+                data: {
+                    'friendId': $(event.target).data('friend'),
+                },
+            }).done(function( ) {
+                location.reload();
+            }).fail(function() {
+                alert('Error');
+            });
+        });
+
+        $(".removeFriend").click(function(event) {
+            $.ajax({
+                type: 'DELETE',
+                url: '{{ path('user_friends') }}',
+                data: {
+                    'friendId': $(event.target).data('friend'),
+                },
+            }).done(function( ) {
+                location.reload();
+            }).fail(function() {
+                alert('Error');
+            });
+        });
+    </script>
+{% endblock %}

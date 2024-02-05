@@ -1,0 +1,15 @@
+parameters:
+    level: 5
+    checkMissingIterableValueType: false
+    paths:
+        -   src
+        -   tests
+    excludePaths:
+        -   public/*
+        -   src/Kernel.php
+        -   config/bootstrap.php
+    ignoreErrors:
+        -
+            message: '#Strict comparison using === between false and non-empty-array\<int, array\<string, mixed\>\> will always evaluate to false#'
+            paths:
+                - src/Infrastructure/Persistence/Repository/*/*Repository.php

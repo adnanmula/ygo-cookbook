@@ -1,0 +1,28 @@
+register:
+  path: /register
+  controller: AdnanMula\Cards\Entrypoint\Controller\RegisterController
+  methods: [ GET,POST ]
+
+login:
+  path: /login
+  controller: AdnanMula\Cards\Entrypoint\Controller\LoginController
+  methods: [ GET,POST ]
+
+logout:
+  path: /logout
+  methods: [ GET ]
+
+user_friends:
+  path: /user/friends
+  controller: AdnanMula\Cards\Entrypoint\Controller\UserFriendsController
+  methods: [ GET,POST,PATCH,DELETE ]
+
+user_settings:
+  path: /user/settings
+  controller: AdnanMula\Cards\Entrypoint\Controller\UserSettingsController
+  methods: [ GET,POST ]
+
+keyforge:
+  resource: context/ygo/routes.yaml
+  prefix: /
+

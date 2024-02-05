@@ -1,0 +1,58 @@
+parameters:
+  db_url: '%env(resolve:DATABASE_URL)%'
+  db_url_default: '%env(resolve:DATABASE_URL_DEFAULT)%'
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+    bind:
+      Doctrine\DBAL\Connection $defaultConnection: '@repository.dbal.connection_default'
+      Doctrine\DBAL\Connection $connection: '@repository.dbal.connection'
+
+  AdnanMula\Cards\Application\Command\:
+    resource: '../src/Application/Command/*/*/*/*Handler.php'
+    tags: [{ name: messenger.message_handler, bus: messenger.bus.command }]
+
+  AdnanMula\Cards\Application\Query\:
+    resource: '../src/Application/Query/*/*/*Handler.php'
+    tags: [{ name: messenger.message_handler, bus: messenger.bus.command }]
+
+  AdnanMula\Cards\Application\Service\:
+    resource: '../src/Application/Service'
+
+  AdnanMula\Cards\Domain\Service\:
+    resource: '../src/Domain/Service'
+
+  AdnanMula\Cards\Entrypoint\Controller\:
+    resource: '../src/Entrypoint/Controller'
+    tags: ['controller.service_arguments']
+
+  AdnanMula\Cards\Infrastructure\Persistence\Repository\:
+    resource: '../src/Infrastructure/Persistence/Repository'
+
+  AdnanMula\Cards\Infrastructure\Security\:
+    resource: '../src/Infrastructure/Security'
+
+#  AdnanMula\Cards\Infrastructure\Service\:
+#    resource: '../src/Infrastructure/Service'
+
+  AdnanMula\Cards\Infrastructure\Fixtures\:
+      autoconfigure: true
+      autowire: true
+      resource: '../src/Infrastructure/Fixtures/*/*'
+      tags: ['cards.fixture']
+
+  AdnanMula\Cards\Infrastructure\Fixtures\FixturesRegistry:
+    class: AdnanMula\Cards\Infrastructure\Fixtures\FixturesRegistry
+
+  AdnanMula\Cards\Entrypoint\Command\:
+    autowire: true
+    autoconfigure: true
+    resource: '../src/Entrypoint/Command'
+    tags: [ 'console.command' ]
+
+imports:
+    - { resource: context/system/buses.yaml }
+    - { resource: context/system/repositories.yaml }

@@ -1,0 +1,38 @@
+name: pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Copy env
+      run: cp .env.dist .env
+
+    - name: Build environment
+      run: make build
+
+    - name: Up environment
+      run: make up
+
+    - name: Install dependencies
+      run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php-fpm sh -c "composer install --ignore-platform-reqs --prefer-dist --no-progress --no-suggest"
+
+    - name: Code sniffer
+      run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php-fpm sh -c "phpcs --standard=phpcs.xml.dist"
+
+    - name: Unit tests
+      run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php-fpm sh -c "php ./bin/phpunit --configuration phpunit.xml.dist --no-coverage --colors=always"
+
+    - name: Php stan
+      run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php-fpm sh -c "php -d memory_limit=256M bin/phpstan analyse -c phpstan.neon"
+
+    - name: Symfony container checker
+      run: docker-compose -f ./docker-compose.yml exec -T --user=$(id -u) php-fpm sh -c "console"

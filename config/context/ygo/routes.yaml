@@ -1,0 +1,4 @@
+ygo_home:
+  path: /
+  controller: AdnanMula\Cards\Entrypoint\Controller\Ygo\HomeController
+  methods: [GET]
