@@ -19,7 +19,5 @@ framework:
 
     http_client:
       scoped_clients:
-        dok.client:
-          base_uri: 'https://decksofkeyforge.com'
-          headers:
-            Api-Key: '%env(DOK_API_TOKEN)%'
+        ygopro.client:
+          base_uri: 'https://db.ygoprodeck.com'

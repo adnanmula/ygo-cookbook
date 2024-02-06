@@ -8,8 +8,20 @@ final class YgoInitial extends AbstractMigration
     {
         $this->execute(
         'CREATE TABLE ygo_cards (
-                id uuid NOT NULL,
-                name character varying(64) NOT NULL,
+                id integer NOT NULL,
+                name character varying(255) NOT NULL,
+                type character varying(50) NOT NULL,
+                frameType character varying(50) NOT NULL,
+                "desc" character varying(1024) NOT NULL,
+                wiki_url character varying(255) NOT NULL,
+                atk integer NULL,
+                def integer NULL,
+                level integer NULL,
+                category character varying(50) NULL,
+                attribute character varying(50) NULL,
+                pend_scale integer NULL,
+                link_value integer NULL,
+                formats jsonb NOT NULL,
                 PRIMARY KEY(id)
             )',
         );

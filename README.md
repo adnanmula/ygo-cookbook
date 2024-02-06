@@ -1,3 +1,3 @@
-![](/docs/1.png)
-![](/docs/2.png)
-![](/docs/3.png)
+YGO COOKBOOK 8)
+
+![](/docs/cookbook.png)

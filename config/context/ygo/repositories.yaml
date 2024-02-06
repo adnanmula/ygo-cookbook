@@ -1,3 +1,3 @@
 services:
-#  AdnanMula\Cards\Domain\Model\Keyforge\KeyforgeDeckRepository:
-#    alias: AdnanMula\Cards\Infrastructure\Persistence\Repository\Keyforge\KeyforgeDeckDbalRepository
+  AdnanMula\Cards\Domain\Model\Ygo\Card\CardRepository:
+    alias: AdnanMula\Cards\Infrastructure\Persistence\Repository\Ygo\CardDbalRepository

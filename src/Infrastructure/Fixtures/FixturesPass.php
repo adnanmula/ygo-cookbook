@@ -15,7 +15,7 @@ final class FixturesPass implements CompilerPassInterface
         }
 
         $definition = $container->findDefinition(FixturesRegistry::class);
-        $taggedServices = $container->findTaggedServiceIds('cards.fixture');
+        $taggedServices = $container->findTaggedServiceIds('ygo_cookbook.fixture');
 
         foreach (\array_keys($taggedServices) as $serviceId) {
             $definition->addMethodCall('add', [new Reference($serviceId)]);

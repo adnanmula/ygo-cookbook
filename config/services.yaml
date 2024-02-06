@@ -42,7 +42,7 @@ services:
       autoconfigure: true
       autowire: true
       resource: '../src/Infrastructure/Fixtures/*/*'
-      tags: ['cards.fixture']
+      tags: ['ygo_cookbook']
 
   AdnanMula\Cards\Infrastructure\Fixtures\FixturesRegistry:
     class: AdnanMula\Cards\Infrastructure\Fixtures\FixturesRegistry
@@ -56,3 +56,4 @@ services:
 imports:
     - { resource: context/system/buses.yaml }
     - { resource: context/system/repositories.yaml }
+    - { resource: context/ygo/repositories.yaml }
