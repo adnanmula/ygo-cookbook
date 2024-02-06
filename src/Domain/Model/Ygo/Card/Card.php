@@ -15,7 +15,7 @@ use AdnanMula\Cards\Domain\Model\Ygo\Card\ValueObject\WikiUrl;
 
 abstract readonly class Card
 {
-    protected array $formats;
+    public array $formats;
 
     public function __construct(
         public int $id,

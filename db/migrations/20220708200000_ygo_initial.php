@@ -10,8 +10,9 @@ final class YgoInitial extends AbstractMigration
         'CREATE TABLE ygo_cards (
                 id integer NOT NULL,
                 name character varying(255) NOT NULL,
+                supertype character varying(50) NOT NULL,
                 type character varying(50) NOT NULL,
-                frameType character varying(50) NOT NULL,
+                frame_type character varying(50) NOT NULL,
                 "desc" character varying(1024) NOT NULL,
                 wiki_url character varying(255) NOT NULL,
                 atk integer NULL,
@@ -21,7 +22,7 @@ final class YgoInitial extends AbstractMigration
                 attribute character varying(50) NULL,
                 pend_scale integer NULL,
                 link_value integer NULL,
-                formats jsonb NOT NULL,
+                formats jsonb NOT NULL default \'[]\',
                 PRIMARY KEY(id)
             )',
         );

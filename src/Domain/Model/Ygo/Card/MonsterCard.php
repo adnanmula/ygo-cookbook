@@ -29,6 +29,6 @@ final readonly class MonsterCard extends Card
 
     public function supertype(): CardSuperType
     {
-        return CardSuperType::TRAP;
+        return CardSuperType::MONSTER;
     }
 }

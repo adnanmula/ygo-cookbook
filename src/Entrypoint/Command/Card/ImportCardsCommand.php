@@ -23,18 +23,18 @@ final class ImportCardsCommand extends Command
 
     protected function configure(): void
     {
-        $this
-            ->setName(self::NAME)
-            ->setDescription('');
+        $this->setName(self::NAME)
+            ->setDescription('Import cards from YgoPro');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $response = $this->ygoproClient->request(Request::METHOD_GET, '/api/v7/cardinfo.php?format=Speed Duel&misc=yes');
-        $response = $response->toArray();
+        $response = $this->ygoproClient
+            ->request(Request::METHOD_GET, '/api/v7/cardinfo.php?format=Speed Duel&misc=yes')
+            ->toArray();
 
         foreach ($response['data'] as $card) {
-            if (\in_array($card['frameType'], ['link', 'token'], true)) {
+            if (\in_array($card['frameType'], ['link', 'token', 'effect_pendulum'], true)) {
                 continue;
             }
 
