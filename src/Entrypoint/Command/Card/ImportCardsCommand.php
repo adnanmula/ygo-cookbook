@@ -30,7 +30,7 @@ final class ImportCardsCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $response = $this->ygoproClient
-            ->request(Request::METHOD_GET, '/api/v7/cardinfo.php?format=Speed Duel&misc=yes')
+            ->request(Request::METHOD_GET, '/api/v7/cardinfo.php?format=Speed Duel&misc=yes')//&num=10&offset=0
             ->toArray();
 
         foreach ($response['data'] as $card) {

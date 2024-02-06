@@ -1,11 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace AdnanMula\Cards\Shared;
+namespace AdnanMula\Cards\Domain\Model\Shared\ValueObject;
 
-use AdnanMula\Cards\Domain\Model\Shared\ValueObject\Locale;
-
-final class LocalizedString implements \JsonSerializable
+final readonly class LocalizedString implements \JsonSerializable
 {
     private function __construct(private array $values)
     {

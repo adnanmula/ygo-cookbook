@@ -11,6 +11,6 @@ final class WikiUrl extends StringValueObject
     {
         Assert::that($value)->url()->startsWith('https://ygoprodeck.com/card/');
 
-        return new static($value);
+        return new self($value);
     }
 }

@@ -8,11 +8,13 @@ enum Format: string implements \JsonSerializable
 {
     use EnumHelper;
 
-    case TCG = 'tcg';
-    case OCG = 'ocg';
-    case GOAT = 'goat';
-    case OCG_GOAT = 'ocg goat';
-    case DUEL_LINKS = 'duel links';
-    case RUSH_DUEL = 'rush duel';
-    case SPEED_DUEL = 'speed duel';
+    case TCG = 'TCG';
+    case OCG = 'OCG';
+    case GOAT = 'GOAT';
+    case OCG_GOAT = 'OCG GOAT';
+    case DUEL_LINKS = 'Duel Links';
+    case RUSH_DUEL = 'Rush Duel';
+    case SPEED_DUEL = 'Speed Duel';
+    case COMMON_CHARITY = 'Common Charity';
+    case EDISON = 'Edison';
 }
