@@ -13,7 +13,7 @@ use AdnanMula\Cards\Domain\Model\Ygo\Card\ValueObject\CardType;
 use AdnanMula\Cards\Domain\Model\Ygo\Card\ValueObject\Format;
 use AdnanMula\Cards\Domain\Model\Ygo\Card\ValueObject\WikiUrl;
 
-final readonly class Card implements \JsonSerializable
+final class Card implements \JsonSerializable
 {
     public array $formats;
 

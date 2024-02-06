@@ -21,3 +21,5 @@ framework:
       scoped_clients:
         ygopro.client:
           base_uri: 'https://db.ygoprodeck.com'
+        ygorganization.client:
+          base_uri: 'https://db.ygorganization.com'

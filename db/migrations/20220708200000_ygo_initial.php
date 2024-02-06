@@ -7,7 +7,7 @@ final class YgoInitial extends AbstractMigration
     public function up(): void
     {
         $this->execute(
-        'CREATE TABLE ygo_cards (
+            'CREATE TABLE ygo_cards (
                 id uuid NOT NULL,
                 refs jsonb NOT NULL default \'{}\',
                 name jsonb NOT NULL default \'{}\',
@@ -27,10 +27,19 @@ final class YgoInitial extends AbstractMigration
                 PRIMARY KEY(id)
             )',
         );
+
+        $this->execute(
+            'CREATE TABLE ygo_card_translations (
+                konami_id integer NOT NULL,
+                data jsonb NOT NULL,
+                PRIMARY KEY(konami_id)
+            )',
+        );
     }
 
     public function down(): void
     {
         $this->execute('DROP TABLE IF EXISTS "ygo_cards"');
+        $this->execute('DROP TABLE IF EXISTS "ygo_card_translations"');
     }
 }
