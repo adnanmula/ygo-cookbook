@@ -3,5 +3,3 @@ services:
     class: AdnanMula\Cards\Infrastructure\Messaging\Dbal\DbalTransactionalMiddleware
     arguments:
       - '@repository.dbal.connection'
-  middleware.exception.catcher:
-    class: AdnanMula\Cards\Infrastructure\Messaging\Dbal\HandlerExceptionCatcherMiddleware

@@ -11,5 +11,6 @@
     <exclude name="SlevomatCodingStandard.Classes.TraitUseSpacing.IncorrectLinesCountBeforeFirstUse" />
     <exclude name="SlevomatCodingStandard.Arrays.AlphabeticallySortedByKeys.IncorrectKeyOrder" />
     <exclude name="SlevomatCodingStandard.ControlStructures.RequireTernaryOperator.TernaryOperatorNotUsed" />
+    <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes" />
   </rule>
 </ruleset>

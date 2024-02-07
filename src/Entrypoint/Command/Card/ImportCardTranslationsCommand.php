@@ -41,6 +41,7 @@ final class ImportCardTranslationsCommand extends Command
 
             if (null === $card->references->konamiId) {
                 $output->writeln('Invalid konami id');
+
                 continue;
             }
 
@@ -58,6 +59,7 @@ final class ImportCardTranslationsCommand extends Command
 
             if (false === \array_key_exists('es', $translation['cardData'])) {
                 $output->writeln('ES translation not found');
+
                 continue;
             }
 
@@ -67,14 +69,14 @@ final class ImportCardTranslationsCommand extends Command
                 [
                     Locale::en_GB->value => $card->name->get(Locale::en_GB),
                     Locale::es_ES->value => $es['name'],
-                ]
+                ],
             );
 
             $card->description = LocalizedString::fromArray(
                 [
                     Locale::en_GB->value => $card->description->get(Locale::en_GB),
                     Locale::es_ES->value => $es['effectText'],
-                ]
+                ],
             );
 
             $this->cardRepository->save($card);

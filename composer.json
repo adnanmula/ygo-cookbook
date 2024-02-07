@@ -28,8 +28,6 @@
     },
     "require-dev": {
         "adnanmula/coding-standard": "^0.0.8",
-        "behat/behat": "^3.13",
-        "friends-of-behat/symfony-extension": "^2.4",
         "phpro/grumphp": "^2.4",
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^9.6"

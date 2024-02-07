@@ -6,4 +6,3 @@ framework:
                 default_middleware: true
                 middleware:
                     - 'middleware.dbal.transactional'
-                    - 'middleware.exception.catcher'

@@ -1,7 +1,7 @@
 framework:
     secret: '%env(APP_SECRET)%'
+    http_method_override: false
     #csrf_protection: true
-    #http_method_override: true
 
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
@@ -12,8 +12,6 @@ framework:
 
 #    error_controller: AdnanMula\Cards\Infrastructure\Security\ErrorHandler
 
-    #esi: true
-    #fragments: true
     php_errors:
         log: true
 
@@ -21,5 +19,7 @@ framework:
       scoped_clients:
         ygopro.client:
           base_uri: 'https://db.ygoprodeck.com'
+        ygopro_images.client:
+          base_uri: 'https://images.ygoprodeck.com'
         ygorganization.client:
           base_uri: 'https://db.ygorganization.com'

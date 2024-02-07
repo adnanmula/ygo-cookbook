@@ -3,7 +3,6 @@
 namespace AdnanMula\Cards\Infrastructure\Persistence\Repository\Ygo;
 
 use AdnanMula\Cards\Application\Service\Json;
-use AdnanMula\Cards\Domain\Model\Shared\ValueObject\Locale;
 use AdnanMula\Cards\Domain\Model\Shared\ValueObject\LocalizedString;
 use AdnanMula\Cards\Domain\Model\Shared\ValueObject\Uuid;
 use AdnanMula\Cards\Domain\Model\Ygo\Card\Card;
@@ -46,7 +45,7 @@ final class CardDbalRepository extends DbalRepository implements CardRepository
         $stmt->bindValue(':type', $card->type->value);
         $stmt->bindValue(':frame_type', $card->frameType->value);
         $stmt->bindValue(':wiki_url', $card->wikiUrl->value());
-        $stmt->bindValue(':formats', Json::encode(array_map(static fn (Format $f) => $f->value, $card->formats)));
+        $stmt->bindValue(':formats', Json::encode(\array_map(static fn (Format $f) => $f->value, $card->formats)));
         $stmt->bindValue(':atk', $card->atk);
         $stmt->bindValue(':def', $card->def);
         $stmt->bindValue(':level', $card->level);

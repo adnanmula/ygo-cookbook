@@ -22,3 +22,8 @@
 /.phpcs-cache
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
+
+# card images
+/public/assets/ygo/cards/*
+/public/assets/ygo/cards_cropped/*
+/public/assets/ygo/cards_small/*

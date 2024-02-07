@@ -6,7 +6,7 @@ final readonly class CardReferences implements \JsonSerializable
 {
     public function __construct(
         public ?int $konamiId,
-        public int $ygoProId
+        public int $ygoProId,
     ) {}
 
     public function jsonSerialize(): array
