@@ -5,6 +5,8 @@ namespace AdnanMula\Cards\Domain\Model\Shared\ValueObject;
 
 final readonly class LocalizedString implements \JsonSerializable
 {
+    private const DEFAULT_LOCALE = Locale::es_ES;
+
     private function __construct(private array $values)
     {
     }
@@ -19,7 +21,7 @@ final readonly class LocalizedString implements \JsonSerializable
         return new self($values);
     }
 
-    public function get(Locale $locale): ?string
+    public function get(Locale $locale = self::DEFAULT_LOCALE): ?string
     {
         return $this->values[$locale->value] ?? null;
     }
@@ -27,5 +29,10 @@ final readonly class LocalizedString implements \JsonSerializable
     public function jsonSerialize(): array
     {
         return $this->values;
+    }
+
+    public function __toString(): string
+    {
+        return $this->get(self::DEFAULT_LOCALE);
     }
 }
