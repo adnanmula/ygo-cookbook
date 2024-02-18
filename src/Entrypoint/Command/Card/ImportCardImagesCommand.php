@@ -62,7 +62,6 @@ final class ImportCardImagesCommand extends Command
 
     private function cards(?string $ids): array
     {
-
         $filters = [];
 
         if (null !== $ids) {

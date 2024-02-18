@@ -14,7 +14,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final class ImportCardsCommand extends Command
 {
-    public const NAME = 'import:cards';
+    public const NAME = 'import:cards:old';
 
     public function __construct(
         private readonly HttpClientInterface $ygoproClient,
