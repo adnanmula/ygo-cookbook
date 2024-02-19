@@ -46,8 +46,8 @@ final class ImportCardsCommand extends Command
         $this->setName(self::NAME)
             ->setDescription('Import cards')
             ->addOption('all', null, InputOption::VALUE_NONE, '')
-            ->addOption('ygopro_ids', 'y', InputOption::VALUE_REQUIRED, 'Ygopro id to search, comma separated')
-            ->addOption('konami_ids', 'k', InputOption::VALUE_REQUIRED, 'Konami id to search, comma separated')
+            ->addOption('ygopro_ids', 'y', InputOption::VALUE_REQUIRED, 'Ygopro ids to search, comma separated')
+            ->addOption('konami_ids', 'k', InputOption::VALUE_REQUIRED, 'Konami ids to search, comma separated')
             ->addOption('with_translations', 't', InputOption::VALUE_NONE, 'Import translations')
             ->addOption('with_images', 'i', InputOption::VALUE_NONE, 'Import images');
     }
@@ -64,10 +64,10 @@ final class ImportCardsCommand extends Command
     {
         [$all, $ygoproIds, $konamiIds, $withTranslations, $withImages] = $this->params();
 
-        $ids = $this->importData($all, $ygoproIds, $konamiIds);
-
-        /** @var array<Card> $cards */
-        $cards = $this->cards($all, $ids);
+        $cards = $this->cards(
+            $all,
+            $this->importData($all, $ygoproIds, $konamiIds),
+        );
 
         if ($withTranslations) {
             $this->importTranslations(...$cards);
@@ -252,19 +252,17 @@ final class ImportCardsCommand extends Command
                 continue;
             }
 
-            $es = $translation['cardData']['es'];
-
             $card->name = LocalizedString::fromArray(
                 [
                     Locale::en_GB->value => $card->name->get(Locale::en_GB),
-                    Locale::es_ES->value => $es['name'],
+                    Locale::es_ES->value => $translation['cardData']['es']['name'],
                 ],
             );
 
             $card->description = LocalizedString::fromArray(
                 [
                     Locale::en_GB->value => $card->description->get(Locale::en_GB),
-                    Locale::es_ES->value => $es['effectText'],
+                    Locale::es_ES->value => $translation['cardData']['es']['effectText'],
                 ],
             );
 
