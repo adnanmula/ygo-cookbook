@@ -3,7 +3,59 @@
 {% block title %}Ygo Cookbook{% endblock %}
 
 {% block body %}
-    <div class="shadow-lg p-3 mb-5 bg-white rounded">
-        <p>pepe luis</p>
+    <div id="cookbook">
+        <div style="background-color: #858080" class="hard">
+            <span style="color: white; font-size: 3em">YGO. Cookbook</span>
+        </div>
+
+        <div style="background-color: #858080; color: white;">
+            <span style="font-family: monospace; font-size: 2em">Table of contents</span><br>
+            <span class="cookbookLink" data-page="2" style="font-family: monospace; font-size: 1em">Menu............2</span><br>
+            <span class="cookbookLink" data-page="3" style="font-family: monospace; font-size: 1em">Recipes.........3</span><br>
+            <span class="cookbookLink" data-page="4" style="font-family: monospace; font-size: 1em">Ingredients.....4</span>
+        </div>
+
+        <div style="background-color: #858080; color: white;">
+            <span style="color: white; font-size: 2em">Menu</span><br>
+            <span style="color: white; font-size: 1em">Meta</span><br>
+            <span style="color: white; font-size: 1em">Tierlist</span><br>
+        </div>
+
+        <div style="background-color: #858080; color: white;">
+            <span style="color: white; font-size: 2em">Recipes</span>
+        </div>
+
+        <div style="background-color: #858080; color: white;">
+            <span style="color: white; font-size: 2em">Ingredients</span><br>
+            <span style="color: white; font-size: 1em">Cards</span><br>
+            <span style="color: white; font-size: 1em">Staples</span><br>
+            <span style="color: white; font-size: 1em">Archetypes</span>
+        </div>
+
+        <div style="background-color: #858080" class="hard"></div>
     </div>
+
+    <script type="text/javascript">
+        $(window).ready(function() {
+            $("#cookbook").turn({
+                width: 922,
+                height: 600,
+                autoCenter: true,
+            });
+        });
+
+        $(window).bind('keydown', function(e){
+            if (e.keyCode === 37) {
+                $('#cookbook').turn('previous');
+            }
+
+            if (e.keyCode === 37) {
+                $('#cookbook').turn('next');
+            }
+        });
+
+        $('.cookbookLink').on('click', function (e) {
+            $("#cookbook").turn('page', e.currentTarget.getAttribute('data-page'));
+        });
+    </script>
 {% endblock %}
